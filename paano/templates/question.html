@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>{{ category.title }} &rsaquo; {{ question.title }}</h2>
+<h2><a href="{{ category.url() }}">{{ category.title }}</a> &rsaquo; {{ question.title }}</h2>
 <p><a class="edit" href="{{ question.url(edit=1) }}">Edit question</a></p>
 {{ m.html(question.content) | safe }}
 {% endblock %}

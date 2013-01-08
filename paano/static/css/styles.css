@@ -135,6 +135,10 @@ button,
     margin-left: 240px;
 }
 
+#content h2 a {
+    color: #333;
+}
+
 #footer {
     margin-top: 32px;
 }
