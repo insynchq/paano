@@ -9,12 +9,23 @@
         <script src="/static/js/paano.js"></script>
     </head>
     <body>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div id="messages" class="cf">
+            <ul>
+            {% for message in get_flashed_messages() %}
+                <li><span>{{ message }}</span></li>
+            {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        {% endwith %}
         <div id="wrapper">
             <div id="header" class="cf">
                 <h1><a href="/">Paano</a></h1>
                 <p>Dead simple FAQ/HowTo CMS</p>
             </div>
-            <div class="cf">
+            <div id="page" class="beveled cf">
                 <div id="sidebar">
                     <h2>Categories</h2>
                     {% block sidebar %}

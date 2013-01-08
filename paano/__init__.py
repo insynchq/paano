@@ -77,8 +77,8 @@ def category(category_title, category_id):
         form.populate_obj(category)
         db.session.add(category)
         db.session.flush()
-        return redirect(category.url())
         flash("Category saved")
+        return redirect(category.url())
     return render_template('category.html', category=category,
                            questions=questions)
 
@@ -100,8 +100,8 @@ def question(category_title, category_id, question_title, question_id):
         form.populate_obj(question)
         db.session.add(question)
         db.session.flush()
-        return redirect(question.url())
         flash("Question saved")
+        return redirect(question.url())
     return render_template('question.html', category=category,
                            question=question)
 
