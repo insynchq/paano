@@ -2,6 +2,6 @@
 
 {% block content %}
 <h2>{{ category.title }} &rsaquo; {{ question.title }}</h2>
-{{ m.html(question.content) | safe }}
 <p><a class="edit" href="{{ question.url(edit=1) }}">Edit question</a></p>
+{{ m.html(question.content) | safe }}
 {% endblock %}

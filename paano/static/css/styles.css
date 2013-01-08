@@ -18,6 +18,7 @@
 
 a {
     color: dodgerblue;
+    text-decoration: none;
 }
 
 h2, h3, h4, h5 {
@@ -41,6 +42,7 @@ select {
 input[type=text],
 textarea {
     border: 1px solid gray;
+    border-radius: 3px;
     padding: 4px 5px;
 }
 
@@ -127,10 +129,28 @@ button,
 
 #content {
     background-color: white;
+    border: 1px solid #d5d5d5;
+    border-width: 0 0 1px 1px;
     padding: 16px 20px;
     margin-left: 240px;
 }
 
 #footer {
     margin-top: 32px;
+}
+
+.categories,
+.questions {
+    list-style: none;
+    margin: 0 0 16px 10px;
+    padding: 0;
+}
+
+.categories {
+    line-height: 24px;
+}
+
+.questions {
+    font-size: 125%;
+    line-height: 32px;
 }

@@ -2,6 +2,7 @@
 
 {% block content %}
 <h2>{{ category.title }}</h2>
+<p><a class="edit" href="{{ category.url(edit=1) }}">Edit category</a></p>
 <ul class="questions">
 {% for question in questions %}
     <li>
@@ -9,5 +10,4 @@
     </li>
 {% endfor %}
 </ul>
-<p><a class="edit" href="{{ category.url(edit=1) }}">Edit category</a></p>
 {% endblock %}

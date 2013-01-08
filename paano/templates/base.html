@@ -29,7 +29,7 @@
                 <div id="sidebar">
                     <h2>Categories</h2>
                     {% block sidebar %}
-                    <ul>
+                    <ul class="categories">
                     {% for category in categories %}
                         <li><a href="{{ category.url() }}">{{ category.title }}</a></li>
                     {% endfor %}
