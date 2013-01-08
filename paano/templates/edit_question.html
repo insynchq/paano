@@ -1,0 +1,20 @@
+<form action="" method="post">
+    {{ form.csrf_token }}
+    <p>
+        {{ form.category_id.label }}
+        {{ form.category_id }}
+    </p>
+    <p>
+        {{ form.title.label }}
+        {{ form.title(size=80) }}
+    </p>
+    <p>
+        {{ form.content.label }}
+        {{ form.content(cols=80, rows=10) }}
+    </p>
+    <p>
+        {{ form.is_sticky.label }}
+        {{ form.is_sticky }} <em>Show in index page</em>
+    </p>
+    <p><input type="submit" value="Save"></p>
+</form>

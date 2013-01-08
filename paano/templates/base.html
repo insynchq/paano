@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+    <head>
+        <title>{% block title %}Paano{% endblock %}</title>
+        <link rel="stylesheet" href="/static/css/normalize.css">
+        <link rel="stylesheet" href="/static/css/styles.css">
+        <script src="/static/js/jquery.min.js"></script>
+        <script src="/static/js/jquery.filedrop.js"></script>
+        <script src="/static/js/paano.js"></script>
+    </head>
+    <body>
+        <div id="wrapper">
+            <div id="header" class="cf">
+                <h1><a href="/">Paano</a></h1>
+                <p>Dead simple FAQ management system using Flask</p>
+            </div>
+            <div class="cf">
+                <div id="sidebar">
+                    <h2>Categories</h2>
+                    {% block sidebar %}
+                    <ul>
+                    {% for category in categories %}
+                        <li><a href="{{ category.url() }}">{{ category.title }}</a></li>
+                    {% endfor %}
+                    </ul>
+                    {% endblock %}
+                </div>
+                <div id="content">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            </div>
+            <div id="footer" class="cf">
+                <p><a href="https://github.com/marksteve/paano">Source at Github</a></p>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,8 @@
+<form action="" method="post">
+    {{ form.csrf_token }}
+    <p>
+        {{ form.title.label }}
+        {{ form.title(size=80) }}
+    </p>
+    <p><input type="submit" value="Save"></p>
+</form>

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Popular Questions</h2>
+<ul class="questions">
+{% for question in questions %}
+    <li>
+        <a href="{{ question.url() }}">{{ question.title }}</a>
+    </li>
+{% endfor %}
+</ul>
+{% endblock %}
