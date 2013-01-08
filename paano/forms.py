@@ -1,4 +1,4 @@
-from flask_wtf import (Form, TextField, TextAreaField, QuerySelectField,
+from flask_wtf import (Form, TextField, TextAreaField, SelectField,
                        BooleanField, Required)
 
 
@@ -7,8 +7,7 @@ class CategoryForm(Form):
 
 
 class QuestionForm(Form):
-    category_id = QuerySelectField("Category", get_label='title',
-                                   validators=[Required()])
+    category_id = SelectField("Category", coerce=int, validators=[Required()])
     title = TextField("Title", validators=[Required()])
     content = TextAreaField("Content", validators=[Required()])
     is_sticky = BooleanField("Sticky", default=False)

@@ -53,11 +53,11 @@ def new_category():
 @app.route('/new_question', methods=['GET', 'POST'])
 def new_question():
     form = QuestionForm(prefix='question')
-    form.category_id.query = Category.query
+    form.category_id.choices = [(c.id, c.title) for c in
+                                Category.query.order_by(Category.title).all()]
     if form.validate_on_submit():
         question = Question()
         form.populate_obj(question)
-        question.category_id = question.category_id.id
         db.session.add(question)
         db.session.flush()
         flash("Question saved")
@@ -91,12 +91,12 @@ def question(category_title, category_id, question_title, question_id):
     if not question:
         abort(404)
     form = QuestionForm(prefix='question', obj=question)
-    form.category_id.query = Category.query
+    form.category_id.choices = [(c.id, c.title) for c in
+                                Category.query.order_by(Category.title).all()]
     if request.args.get('edit'):
         return render_template('edit_question.html', form=form)
     if form.validate_on_submit():
         form.populate_obj(question)
-        question.category_id = question.category_id.id
         db.session.add(question)
         db.session.flush()
         return redirect(question.url())
