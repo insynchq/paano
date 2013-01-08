@@ -28,12 +28,13 @@ def teardown_request(exception=None):
 
 @app.context_processor
 def sidebar():
-    return dict(m=m, categories=Category.query.all())
+    return dict(m=m, categories=Category.query.order_by(Category.title).all())
 
 
 @app.route('/')
 def index():
-    questions = Question.query.filter_by(is_sticky=True).all()
+    questions = (Question.query.filter_by(is_sticky=True)
+                 .order_by(Question.posted_at.asc()).all())
     return render_template('index.html', questions=questions)
 
 
@@ -68,7 +69,7 @@ def new_question():
 @app.route('/<category_title>/<category_id>', methods=['GET', 'POST'])
 def category(category_title, category_id):
     category = Category.query.get_or_404(category_id)
-    questions = Question.query.filter_by(category_id=category_id).all()
+    questions = category.get_questions()
     form = CategoryForm(prefix='category', obj=category)
     if request.args.get('edit'):
         return render_template('edit_category.html', form=form)

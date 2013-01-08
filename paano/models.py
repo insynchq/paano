@@ -39,6 +39,10 @@ class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(255), nullable=False)
 
+    def get_questions(self):
+        return (Question.query.filter_by(category_id=self.id)
+                .order_by(Question.posted_at.asc()).all())
+
     def url(self, **kwargs):
         return url_for('category', category_title=clean(self.title),
                        category_id=self.id, **kwargs)
