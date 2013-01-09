@@ -1,2 +1,3 @@
 recursive-include paano/templates *
 recursive-include paano/static *
+recursive-exclude paano/static/uploads *
