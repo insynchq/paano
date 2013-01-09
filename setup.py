@@ -19,6 +19,7 @@ setup(
     long_description=__doc__,
     packages=['paano'],
     zip_safe=False,
+    include_package_data=True,
     platforms='any',
     install_requires=[
         'Flask==0.9',
