@@ -1,0 +1,2 @@
+recursive-include paano/templates *
+recursive-include paano/static *
