@@ -10,7 +10,7 @@ from setuptools import setup
 
 setup(
     name='paano',
-    version='0.0.1',
+    version='0.0.2',
     url='http://github.com/marksteve/paano',
     license='MIT',
     author='Mark Steve Samson',
@@ -35,6 +35,7 @@ setup(
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
+        'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
         'Topic :: Internet :: WWW/HTTP :: WSGI :: Application',
