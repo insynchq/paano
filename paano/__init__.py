@@ -15,8 +15,9 @@ ALLOWED_EXT = set(['.png', '.jpg', '.jpeg', '.gif'])
 UPLOADS_FOLDER = 'uploads'
 
 
-app = Flask(__name__)
+app = Flask(__name__, instance_relative_config=True)
 app.config.from_object('paano.config')
+app.config.from_pyfile('application.cfg', silent=True)
 
 login.init_app(app)
 db.init_app(app)
