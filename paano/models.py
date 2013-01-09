@@ -7,7 +7,7 @@ from .extensions import db
 
 
 def clean(s):
-    return secure_filename(s).lower()[:16]
+    return secure_filename(s)[:64].strip('_').lower().replace('_', '-')
 
 
 class Question(db.Model):
