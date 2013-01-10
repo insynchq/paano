@@ -3,7 +3,10 @@
 {% block content %}
 <h2>{{ category.title }}</h2>
 {% if current_user.is_authenticated() %}
-<p><a class="edit" href="{{ category.url(edit=1) }}">Edit category</a></p>
+<p>
+    <a class="edit" href="{{ category.url(edit=1) }}">Edit</a>
+    <a class="delete" href="{{ category.url() }}">Delete</a>
+</p>
 {% endif %}
 <ul class="questions">
 {% for question in questions %}

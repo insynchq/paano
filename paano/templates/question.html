@@ -3,7 +3,10 @@
 {% block content %}
 <h2><a href="{{ category.url() }}">{{ category.title }}</a> &rsaquo; {{ question.title }}</h2>
 {% if current_user.is_authenticated() %}
-<p><a class="edit" href="{{ question.url(edit=1) }}">Edit question</a></p>
+<p>
+    <a class="edit" href="{{ question.url(edit=1) }}">Edit</a>
+    <a class="delete" href="{{ question.url() }}">Delete</a>
+</p>
 {% endif %}
 {{ m.html(question.content) | safe }}
 {% endblock %}

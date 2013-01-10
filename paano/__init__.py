@@ -100,9 +100,14 @@ def new_question():
     return render_template('new_question.html', form=form)
 
 
-@app.route('/<category_title>/<category_id>', methods=['GET', 'POST'])
+@app.route('/<category_title>/<category_id>',
+           methods=['GET', 'POST', 'DELETE'])
 def category(category_title, category_id):
     category = Category.query.get_or_404(category_id)
+    if request.method == 'DELETE':
+        Question.query.filter_by(category_id=category.id).delete()
+        db.session.delete(category)
+        return jsonify(success=True)
     questions = category.get_questions()
     form = CategoryForm(prefix='category', obj=category)
     if current_user.is_authenticated():
@@ -119,13 +124,16 @@ def category(category_title, category_id):
 
 
 @app.route('/<category_title>/<category_id>/<question_title>/<question_id>',
-           methods=['GET', 'POST'])
+           methods=['GET', 'POST', 'DELETE'])
 def question(category_title, category_id, question_title, question_id):
     category = Category.query.get_or_404(category_id)
     question = Question.query.filter_by(category_id=category_id,
                                         id=question_id).first()
     if not question:
         abort(404)
+    if request.method == 'DELETE':
+        db.session.delete(question)
+        return jsonify(success=True)
     form = QuestionForm(prefix='question', obj=question)
     form.category_id.choices = [(c.id, c.title) for c in
                                 Category.query.order_by(Category.title).all()]

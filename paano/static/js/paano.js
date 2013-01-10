@@ -1,5 +1,6 @@
 (function($, undefined) {
     $(function() {
+
         $('.edit').on('click', function(e) {
             e.preventDefault();
             $("#content").load($(this).attr('href'), function() {
@@ -14,6 +15,22 @@
                     }
                 });
             });
+        });
+
+        $('.delete').on('click', function(e) {
+            e.preventDefault();
+            if (confirm('Are you sure you want to delete this item?')) {
+                var promise = $.ajax({
+                    url: $(this).attr('href'),
+                    type: 'delete'
+                });
+                promise.done(function(response) {
+                    location.href = '/';
+                });
+                promise.fail(function() {
+                    alert('Failed to delete item. Please try again.');
+                });
+            }
         });
 
     });
