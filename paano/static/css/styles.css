@@ -39,7 +39,7 @@ body,
 input,
 textarea,
 select {
-    font: 14px/16px Helvetica, Arial, sans-serif;
+    font: 16px/24px Helvetica, Arial, sans-serif;
     color: #333;
 }
 
@@ -86,8 +86,7 @@ button,
 }
 
 #wrapper {
-    width: 960px;
-    margin: 32px auto;
+    margin: 20px 40px;
 }
 
 #messages {
@@ -147,14 +146,14 @@ button,
     margin-top: 32px;
 }
 
-.categories,
+#sidebar ul,
 .questions {
     list-style: none;
     margin: 0 0 16px 10px;
     padding: 0;
 }
 
-.categories {
+#sidebar ul {
     line-height: 24px;
 }
 
