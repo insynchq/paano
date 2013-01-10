@@ -1,23 +1,23 @@
 import base64
 import os
 
-from flask import (Flask, render_template, flash, abort, request, redirect,
-                   jsonify, url_for)
+import misaka as m
+from flask import (render_template, flash, abort, request, redirect,
+                   jsonify, url_for, send_from_directory)
 from flask_googlelogin import UserMixin, login_user, logout_user, current_user
 from werkzeug import secure_filename
-import misaka as m
 
+from .wsgi import app
 from .extensions import login, db
 from .forms import CategoryForm, QuestionForm
 from .models import Category, Question
 
+
 ALLOWED_EXT = set(['.png', '.jpg', '.jpeg', '.gif'])
-UPLOADS_FOLDER = 'uploads'
 
 
-app = Flask(__name__, instance_relative_config=True)
-app.config.from_object('paano.config')
-app.config.from_pyfile('application.cfg', silent=True)
+# Setup extensions and hooks
+
 
 login.init_app(app)
 db.init_app(app)
@@ -41,6 +41,9 @@ def get_user(user_id):
   user.id = user_id
   user.is_authenticated = lambda: user.id in app.config['ALLOWED_USERS']
   return user
+
+
+# Routes
 
 
 @app.route('/login')
@@ -150,10 +153,13 @@ def upload():
             # Check if has valid extension
             if any(map(filename.endswith, ALLOWED_EXT)):
                 # Store
-                f.save(os.path.join(app.static_folder, UPLOADS_FOLDER,
-                                    filename))
+                f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
                 # Return upload path
-                return jsonify(filename=os.path.join(app.static_url_path,
-                                                     UPLOADS_FOLDER, filename))
+                return jsonify(filename=url_for('uploads', filename=filename))
 
     abort(400)
+
+
+@app.route('/uploads/<path:filename>')
+def uploads(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
