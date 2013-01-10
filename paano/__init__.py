@@ -100,7 +100,7 @@ def new_question():
     return render_template('new_question.html', form=form)
 
 
-@app.route('/<category_title>/<category_id>',
+@app.route('/<category_id>/<category_title>',
            methods=['GET', 'POST', 'DELETE'])
 def category(category_title, category_id):
     category = Category.query.get_or_404(category_id)
@@ -123,9 +123,9 @@ def category(category_title, category_id):
                            questions=questions)
 
 
-@app.route('/<category_title>/<category_id>/<question_title>/<question_id>',
+@app.route('/<category_id>/<category_title>/<question_id>/<question_title>',
            methods=['GET', 'POST', 'DELETE'])
-def question(category_title, category_id, question_title, question_id):
+def question(category_id, category_title, question_id, question_title):
     category = Category.query.get_or_404(category_id)
     question = Question.query.filter_by(category_id=category_id,
                                         id=question_id).first()
