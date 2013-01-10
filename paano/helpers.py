@@ -9,11 +9,11 @@ def url_for(*args, **kwargs):
     across requests
     """
 
-    selected_lang = request.args.get('lang')
+    selected_lang = kwargs.get('lang', request.args.get('lang'))
     if selected_lang not in (None, DEFAULT_LANG):
         kwargs['lang'] = selected_lang
 
-    selected_platform = request.args.get('platform')
+    selected_platform = kwargs.get('platform', request.args.get('platform'))
     if selected_platform not in (None, g.detected_platform):
         kwargs['platform'] = selected_platform
 
