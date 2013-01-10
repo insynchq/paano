@@ -45,6 +45,16 @@
                     {% endblock %}
                 </div>
                 <div id="content">
+                    <select id="platform">
+                    {% for platform, platform_title, platform_url in available_platforms %}
+                        <option
+                            value="{{ platform_url }}"
+                            {% if platform == selected_platform %}
+                            selected="selected"
+                            {% endif %}
+                            >{{ platform_title }}</option>
+                    {% endfor %}
+                    </select>
                     {% block content %}
                     {% endblock %}
                 </div>

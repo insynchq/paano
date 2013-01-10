@@ -1,6 +1,10 @@
 (function($, undefined) {
     $(function() {
 
+        $('#platform').on('change', function(e) {
+            location.href = $(this).val();
+        });
+
         $('.edit').on('click', function(e) {
             e.preventDefault();
             $("#content").load($(this).attr('href'), function() {
