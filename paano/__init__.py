@@ -95,8 +95,8 @@ def logout():
 
 @app.route('/')
 def index():
-    questions = (Question.query.filter_by(is_sticky=True)
-                 .order_by(Question.posted_at.asc()).all())
+    selected_platform = request.args.get('platform', g.detected_platform)
+    questions = Question.get_sticky(platform=selected_platform)
     return render_template('index.html', questions=questions)
 
 

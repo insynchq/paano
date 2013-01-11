@@ -34,6 +34,14 @@ class Question(db.Model):
     position = db.Column(db.Integer, nullable=True)
     is_sticky = db.Column(db.Boolean, default=False)
 
+    @classmethod
+    def get_sticky(self, platform):
+        return (Question.query
+                .filter_by(is_sticky=True)
+                .filter(Question.platform.in_([DEFAULT_PLATFORM, platform]))
+                .order_by(Question.posted_at.asc())
+                .all())
+
     def url(self, **kwargs):
         kwargs.setdefault('category_id', self.category_id)
         kwargs.setdefault('eid', self.eid)
