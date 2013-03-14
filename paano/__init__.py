@@ -76,12 +76,12 @@ def get_user(user_id):
 
 @app.route('/login')
 def login_redirect():
-    return redirect(login.login_manager.login_view)
+    return redirect(login.login_url())
 
 
 @app.route('/oauth2callback')
 @login.oauth2callback
-def oauth2callback(userinfo):
+def oauth2callback(token, userinfo, **params):
     user = login.login_manager.user_callback(userinfo['id'])
     login_user(user)
     return redirect(url_for('index'))
