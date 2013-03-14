@@ -1,14 +1,14 @@
 (function($, undefined) {
     $(function() {
 
-        $('#platform').on('change', function(e) {
+        $('.paano-platform').on('change', function(e) {
             location.href = $(this).val();
         });
 
         $('.edit').on('click', function(e) {
             e.preventDefault();
-            $("#content").load($(this).attr('href'), function() {
-                var $questionContent = $('#question-content');
+            $(".paano-content").load($(this).attr('href'), function() {
+                var $questionContent = $('.paano-question-content');
                 $questionContent.filedrop({
                     url: '/upload',
                     withCredentials: true,
