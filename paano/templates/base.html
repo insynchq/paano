@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
     <head>
-        <title>{% block title %}Paano{% endblock %}</title>
+        <title>{% block paano_title %}Paano{% endblock %}</title>
         <link rel="stylesheet" href="/static/css/normalize.css">
         <link rel="stylesheet" href="/static/css/styles.css">
         <script src="/static/js/jquery.min.js"></script>
@@ -34,7 +34,7 @@
                         <li><a href="{{ url_for('new_question') }}">New Question</a></li>
                     </ul>
                     {% endif %}
-                    {% block sidebar %}
+                    {% block paano_sidebar %}
                     <h2>Categories</h2>
                     <ul class="categories">
                         <li><a href="{{ url_for('index') }}">Popular</a></li>
@@ -55,7 +55,7 @@
                             >{{ platform_title }}</option>
                     {% endfor %}
                     </select>
-                    {% block content %}
+                    {% block paano_content %}
                     {% endblock %}
                 </div>
             </div>
