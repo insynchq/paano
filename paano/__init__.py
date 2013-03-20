@@ -97,7 +97,7 @@ def logout():
 def index():
     selected_platform = request.args.get('platform', g.detected_platform)
     questions = Question.get_sticky(platform=selected_platform)
-    return render_template('index.html', questions=questions)
+    return render_template('paano/index.html', questions=questions)
 
 
 @app.route('/new_category', methods=['GET', 'POST'])
@@ -109,7 +109,7 @@ def new_category():
         db.session.flush()
         flash("Category saved")
         return redirect(category.url())
-    return render_template('new_category.html', form=form)
+    return render_template('paano/new_category.html', form=form)
 
 
 @app.route('/new_question', methods=['GET', 'POST'])
@@ -144,7 +144,7 @@ def new_question():
         if request.method == 'POST':
             print form.errors
 
-    return render_template('new_question.html', form=form)
+    return render_template('paano/new_question.html', form=form)
 
 
 @app.route('/categories/<category_id>', methods=['GET', 'POST', 'DELETE'])
@@ -159,14 +159,14 @@ def category(category_id):
     form = CategoryForm(prefix='category', obj=category)
     if current_user.is_authenticated():
         if request.args.get('edit'):
-            return render_template('category_form.html', form=form)
+            return render_template('paano/category_form.html', form=form)
         if form.validate_on_submit():
             form.populate_obj(category)
             db.session.add(category)
             db.session.flush()
             flash("Category saved")
             return redirect(category.url())
-    return render_template('category.html', category=category,
+    return render_template('paano/category.html', category=category,
                            questions=questions)
 
 
@@ -196,7 +196,7 @@ def question(category_id, eid, title):
 
     if current_user.is_authenticated():
         if request.args.get('edit'):
-            return render_template('question_form.html', form=form)
+            return render_template('paano/question_form.html', form=form)
         if form.validate_on_submit():
             form.populate_obj(question)
             db.session.add(question)
@@ -204,7 +204,7 @@ def question(category_id, eid, title):
             flash("Question saved")
             return redirect(question.url(platform=question.platform))
 
-    return render_template('question.html', category=category,
+    return render_template('paano/question.html', category=category,
                            question=question)
 
 
