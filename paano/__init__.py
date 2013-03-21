@@ -102,7 +102,7 @@ def index():
 
 @app.route('/new_category', methods=['GET', 'POST'])
 def new_category():
-    form = CategoryForm(prefix='category')
+    form = CategoryForm(prefix='paano-category')
     if current_user.is_authenticated() and form.validate_on_submit():
         category = Category.create(form.title.data)
         db.session.add(category)
@@ -114,7 +114,7 @@ def new_category():
 
 @app.route('/new_question', methods=['GET', 'POST'])
 def new_question():
-    form_args = dict(prefix='question')
+    form_args = dict(prefix='paano-question')
 
     category_id = request.args.get('category_id')
     eid = request.args.get('eid')
@@ -156,7 +156,7 @@ def category(category_id):
         return jsonify(success=True)
     selected_platform = request.args.get('platform', g.detected_platform)
     questions = category.get_questions(platform=selected_platform)
-    form = CategoryForm(prefix='category', obj=category)
+    form = CategoryForm(prefix='paano-category', obj=category)
     if current_user.is_authenticated():
         if request.args.get('edit'):
             return render_template('paano/category_form.html', form=form)
@@ -190,7 +190,7 @@ def question(category_id, eid, title):
         db.session.delete(question)
         return jsonify(success=True)
 
-    form = QuestionForm(prefix='question', obj=question)
+    form = QuestionForm(prefix='paano-question', obj=question)
     form.category_id.choices = [(c.id, c.title) for c in
                                 Category.query.order_by(Category.title).all()]
 

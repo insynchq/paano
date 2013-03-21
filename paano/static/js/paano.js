@@ -1,14 +1,14 @@
 (function($, undefined) {
     $(function() {
 
-        $('.paano-platform').on('change', function(e) {
+        $('#paano-platform').on('change', function(e) {
             location.href = $(this).val();
         });
 
-        $('.edit').on('click', function(e) {
+        $('.paano-edit').on('click', function(e) {
             e.preventDefault();
-            $(".paano-content").load($(this).attr('href'), function() {
-                var $questionContent = $('.paano-question-content');
+            $("#paano-content").load($(this).attr('href'), function() {
+                var $questionContent = $('#paano-question-content');
                 $questionContent.filedrop({
                     url: '/upload',
                     withCredentials: true,
@@ -21,7 +21,7 @@
             });
         });
 
-        $('.delete').on('click', function(e) {
+        $('.paano-delete').on('click', function(e) {
             e.preventDefault();
             if (confirm('Are you sure you want to delete this item?')) {
                 var promise = $.ajax({

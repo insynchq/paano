@@ -44,8 +44,8 @@
                     </ul>
                     {% endblock %}
                 </div>
-                <div class="paano-content">
-                    <select class="paano-platform">
+                <div id="paano-content">
+                    <select id="paano-platform">
                     {% for platform, platform_title, platform_url in available_platforms %}
                         <option
                             value="{{ platform_url }}"

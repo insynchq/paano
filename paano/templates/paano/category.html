@@ -4,8 +4,8 @@
 <h2>{{ category.title }}</h2>
 {% if current_user.is_authenticated() %}
 <p>
-    <a class="edit" href="{{ category.url(edit=1) }}">Edit</a> &ndash;
-    <a class="delete" href="{{ category.url() }}">Delete</a>
+    <a class="paano-edit" href="{{ category.url(edit=1) }}">Edit</a> &ndash;
+    <a class="paano-delete" href="{{ category.url() }}">Delete</a>
 </p>
 {% endif %}
 <ul class="questions">
