@@ -19,10 +19,6 @@ from .wsgi import app
 # Setup extensions and hooks
 
 
-login.init_app(app)
-db.init_app(app)
-
-
 @app.before_request
 def detect_platform():
     user_agent = request.headers.get('User-Agent').lower()
