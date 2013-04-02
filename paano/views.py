@@ -27,13 +27,20 @@ def init(app):
         elif 'linux' in user_agent:
             g.detected_platform = 'linux'
 
+    @app.before_request
+    def db_session_start():
+        if request.endpoint and request.endpoint != 'static':
+            db.session()
+
 
     @app.teardown_request
-    def commit_db(exception=None):
-        if exception:
-            db.session.rollback()
-        else:
-            db.session.commit()
+    def db_session_commit(exception=None):
+        if request.endpoint and request.endpoint != 'static':
+            if exception:
+                db.session.rollback()
+            else:
+                db.session.commit()
+            db.session.remove()
 
 
     @app.context_processor
