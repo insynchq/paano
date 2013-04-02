@@ -14,6 +14,8 @@ def url_for(*args, **kwargs):
         kwargs['lang'] = selected_lang
 
     selected_platform = kwargs.get('platform', request.args.get('platform'))
+    if selected_platform == 'general':
+        selected_platform = g.detected_platform
     if selected_platform not in (None, g.detected_platform):
         kwargs['platform'] = selected_platform
 
