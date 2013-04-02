@@ -143,7 +143,7 @@ def init(app):
     @app.route('/categories/<category_id>', methods=['GET', 'POST', 'DELETE'])
     def category(category_id):
         category = Category.query.get_or_404(category_id)
-        if request.method == 'DELETE':
+        if current_user.is_authenticated() and request.method == 'DELETE':
             Question.query.filter_by(category_id=category.id).delete()
             db.session.delete(category)
             return jsonify(success=True)
@@ -179,7 +179,7 @@ def init(app):
         if not question:
             abort(404)
 
-        if request.method == 'DELETE':
+        if current_user.is_authenticated() and request.method == 'DELETE':
             db.session.delete(question)
             return jsonify(success=True)
 
