@@ -10,7 +10,7 @@ from setuptools import setup
 
 setup(
     name='paano',
-    version='0.1.9',
+    version='0.1.10',
     url='http://github.com/marksteve/paano',
     license='MIT',
     author='Mark Steve Samson',
