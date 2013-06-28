@@ -2,9 +2,10 @@ import base64
 import os
 
 from flask import (render_template, flash, abort, request, redirect, jsonify,
-                   send_from_directory, g, url_for as _url_for)
-from flask_googlelogin import UserMixin, login_user, logout_user, current_user
+                   send_from_directory, g)
+from flask_login import UserMixin, login_user, logout_user, current_user
 from werkzeug import secure_filename
+import flask
 import misaka as m
 
 from .constants import (DEFAULT_LANG, DEFAULT_PLATFORM, AVAILABLE_PLATFORMS,
@@ -13,6 +14,10 @@ from .extensions import login, db
 from .forms import CategoryForm, QuestionForm
 from .helpers import url_for
 from .models import Category, Question
+
+
+# Monkey patch url_for
+flask.url_for = url_for
 
 
 def init(app):
@@ -52,10 +57,9 @@ def init(app):
                 continue
             params['platform'] = platform
             available_platforms.append((platform, platform_title,
-                                        _url_for(request.endpoint, **params)))
+                                        url_for(request.endpoint, **params)))
         return dict(
             m=m,
-            url_for=url_for,
             current_user=current_user,
             selected_lang=request.args.get('lang', DEFAULT_LANG),
             selected_platform=request.args.get('platform', g.detected_platform),

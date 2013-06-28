@@ -22,11 +22,11 @@ setup(
     include_package_data=True,
     platforms='any',
     install_requires=[
-        'Flask==0.9',
+        'Flask<0.11',
         'Flask-Babel==0.8',
         'Flask-SQLAlchemy==0.16',
         'Flask-WTF==0.8.2',
-        'Flask-GoogleLogin==0.1.4',
+        'Flask-GoogleLogin==0.2',
         'misaka==1.0.2',
     ],
     classifiers=[
