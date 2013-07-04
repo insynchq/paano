@@ -25,12 +25,12 @@ def init(app):
     @app.before_request
     def detect_platform():
         user_agent = request.headers.get('User-Agent').lower()
-        if 'windows' in user_agent:
-            g.detected_platform = 'win'
-        elif 'macintosh' in user_agent:
+        if 'macintosh' in user_agent:
             g.detected_platform = 'mac'
         elif 'linux' in user_agent:
             g.detected_platform = 'linux'
+        else:
+            g.detected_platform = 'win'
 
     @app.before_request
     def db_session_start():
