@@ -30,14 +30,14 @@
                     {% if current_user.is_authenticated() %}
                     <h2>Admin</h2>
                     <ul>
-                        <li><a href="{{ url_for('new_category') }}">New Category</a></li>
-                        <li><a href="{{ url_for('new_question') }}">New Question</a></li>
+                        <li><a href="{{ paano_url_for('new_category') }}">New Category</a></li>
+                        <li><a href="{{ paano_url_for('new_question') }}">New Question</a></li>
                     </ul>
                     {% endif %}
                     {% block paano_sidebar %}
                     <h2>Categories</h2>
                     <ul class="categories">
-                        <li><a href="{{ url_for('index') }}">Popular</a></li>
+                        <li><a href="{{ paano_url_for('index') }}">Popular</a></li>
                     {% for category in categories %}
                         <li><a href="{{ category.url() }}">{{ category.title }}</a></li>
                     {% endfor %}

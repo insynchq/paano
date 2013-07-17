@@ -6,7 +6,7 @@
 <p>
     <a class="paano-edit" href="{{ question.url(edit=1) }}">Edit</a> &ndash;
     <a class="paano-delete" href="{{ question.url() }}">Delete</a> &ndash;
-    <a class="paano-fork" href="{{ url_for('new_question', category_id=category.id, eid=question.eid) }}">Fork</a>
+    <a class="paano-fork" href="{{ paano_url_for('new_question', category_id=category.id, eid=question.eid) }}">Fork</a>
 </p>
 {% endif %}
 {{ m.html(question.content) | safe }}

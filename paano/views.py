@@ -16,10 +16,6 @@ from .helpers import url_for
 from .models import Category, Question
 
 
-# Monkey patch url_for
-flask.url_for = url_for
-
-
 def init(app):
 
     @app.before_request
@@ -60,6 +56,7 @@ def init(app):
                                         url_for(request.endpoint, **params)))
         return dict(
             m=m,
+            paano_url_for=url_for,
             current_user=current_user,
             selected_lang=request.args.get('lang', DEFAULT_LANG),
             selected_platform=request.args.get('platform', g.detected_platform),
