@@ -130,7 +130,7 @@ button,
     text-shadow: 1px 1px 0 white;
 }
 
-#content {
+#paano-content {
     background-color: white;
     border: 1px solid #d5d5d5;
     border-width: 0 0 1px 1px;
@@ -138,11 +138,11 @@ button,
     margin-left: 240px;
 }
 
-#content h2 a {
+#paano-content h2 a {
     color: #333;
 }
 
-#platform {
+#paano-platform {
     float: right;
 }
 

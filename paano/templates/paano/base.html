@@ -2,11 +2,11 @@
 <html>
     <head>
         <title>{% block paano_title %}Paano{% endblock %}</title>
-        <link rel="stylesheet" href="/static/css/normalize.css">
-        <link rel="stylesheet" href="/static/css/styles.css">
-        <script src="/static/js/jquery.min.js"></script>
-        <script src="/static/js/jquery.filedrop.js"></script>
-        <script src="/static/js/paano.js"></script>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+        <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/jquery.filedrop.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/paano.js') }}"></script>
     </head>
     <body>
         {% with messages = get_flashed_messages() %}
