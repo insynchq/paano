@@ -10,7 +10,7 @@
             $("#paano-content").load($(this).attr('href'), function() {
                 var $questionContent = $('#paano-question-content');
                 $questionContent.filedrop({
-                    url: '/upload',
+                    url: '../../../../upload',
                     withCredentials: true,
                     allowedfiletypes: ['image/jpeg','image/png','image/gif'],
                     uploadFinished: function(i, file, response, time) {
