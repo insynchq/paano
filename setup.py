@@ -26,7 +26,7 @@ setup(
         'Flask-Babel==0.8',
         'Flask-SQLAlchemy==0.16',
         'Flask-WTF==0.8.2',
-        'Flask-GoogleLogin==0.2',
+        'Flask-GoogleLogin==0.3.0',
         'misaka==1.0.2',
     ],
     classifiers=[
